@@ -12,35 +12,20 @@ app.config["DEBUG"] = True
 LOG = create_logger(app)
 LOG.setLevel(logging.INFO)
 
+
+try:
+    from controller.ECMRangersController import *
+except Exception as e:
+    print(e)
+
 #Handling globle exceptions
 @app.errorhandler(Exception)
 def handle_error(e):
+    print("-----Error -----",app)
     code = 500
     if isinstance(e, HTTPException):
         code = e.code
     return jsonify(error=str(e)), code
-
-stores = [   {
-        "name": "My Store",
-        "items": [
-            {
-                "name": "Chair",
-                "price": 15.99
-            }
-        ]
-    }
-]
-
-
-# REST services
-@app.get("/store")
-def get_stores():
-    return {"stores": stores}
-
-
-
-
-
 
 #Application running
 
