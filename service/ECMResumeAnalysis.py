@@ -15,7 +15,7 @@ print("-----ECMResumeAnalysis-------")
 class ECMResumeAnalysis():
     def __init__(self):
         try:
-            credential = AzureKeyCredential('')
+            credential = AzureKeyCredential('wvjaKDw3qX9W49n3g9GHsqH3YTpomkHKBBlSWBRdsSAzSeBHXwZE')
             self.search_service = SearchClient(endpoint='https://aitestcvsearch.search.windows.net', index_name='azureblob-index', credential=credential)
         except Exception as e:
             print(e)
