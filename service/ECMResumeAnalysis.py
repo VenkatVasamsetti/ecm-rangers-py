@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 import json
-import jsonpickle
 from flask import make_response, jsonify
 from azure.core.credentials import AzureKeyCredential
 from azure.search.documents import SearchClient
