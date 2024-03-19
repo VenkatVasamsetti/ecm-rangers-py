@@ -21,17 +21,19 @@ def get_stores():
     azObj.searchText()
     return {"stores": "data loaded"}
 
-@app.get("/search")
+@app.post("/search")
 def searchBestMatch():
     LOG.debug('------search method----')
     content_type = request.headers.get('Content-Type')
-    if request.is_json:
+    if content_type == 'application/json':
         LOG.debug('------content type json----')
         data = json.loads(request.data)
-        return azObj.processData()
+        return azObj.searchTfidVet(data['context'], data['threshold'], data['noOfMatches'])
     else:
-        # return "Content type is not supported."
-        return azObj.processData()
-
+        LOG.debug('------content type not json----')
+        return azObj.processData('test')
+@app.get('/ping')
+def pingService():
+    return azObj.processData('test')
 print("-----Cntroller end-----",app)
 
